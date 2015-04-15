@@ -25,6 +25,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 import draw.me.fairy.R;
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
 
 
 public class MenuActivity extends Activity {
@@ -136,9 +138,22 @@ public class MenuActivity extends Activity {
 		}
 	}
 
+	private void checkForCrashes() {
+		CrashManager.register(this, "b7c7db457d98c7d89cd8ad1c335853e6");
+	}
+
+	private void checkForUpdates() {
+		// Remove this for store builds!
+		UpdateManager.register(this, "b7c7db457d98c7d89cd8ad1c335853e6");
+	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
+		//for hockeyapp
+		checkForCrashes();
+		checkForUpdates();
+
 //		startLocationService();
 	}
 
